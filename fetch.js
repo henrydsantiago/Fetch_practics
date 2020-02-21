@@ -7,6 +7,7 @@ var fperfil = document.querySelector('#fotoperfil');
 var tabladatos = document.querySelector('#tabla');
 
 var formulario = document.querySelector('#formulario');
+var place = document.getElementById('respuesta');
 
 formulario.addEventListener('submit', function(e){
     e.preventDefault();
@@ -20,7 +21,23 @@ formulario.addEventListener('submit', function(e){
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+
+            if(data=='error'){
+                place.innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                        Debes llenar todos los campos!
+                </div>
+                `
+            }else{
+                place.innerHTML = `
+                <div class="alert alert-success" role="alert">
+                        ${data}
+                </div>
+                `
+
+            }
+            
+
         })
 
 })
